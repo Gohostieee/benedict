@@ -1,11 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    background-color: black;
 }
+.bgwave {
+  background-image: url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse' width='120' height='80' patternTransform='scale(2) rotate(105)'><rect x='0' y='0' width='100%' height='100%' fill='hsla(239,93.8%,19%,1)'/><path d='M-50.129 12.685C-33.346 12.358-16.786 4.918 0 5c16.787.082 43.213 10 60 10s43.213-9.918 60-10c16.786-.082 33.346 7.358 50.129 7.685'  stroke-width='5' stroke='hsla(214,97.1%,27.5%,1)' fill='none'/><path d='M-50.129 32.685C-33.346 32.358-16.786 24.918 0 25c16.787.082 43.213 10 60 10s43.213-9.918 60-10c16.786-.082 33.346 7.358 50.129 7.685'  stroke-width='5' stroke='hsla(201,100%,35.7%,1)' fill='none'/><path d='M-50.129 52.685C-33.346 52.358-16.786 44.918 0 45c16.787.082 43.213 10 60 10s43.213-9.918 60-10c16.786-.082 33.346 7.358 50.129 7.685'  stroke-width='5' stroke='hsla(195,100%,39%,1)' fill='none'/><path d='M-50.129 72.685C-33.346 72.358-16.786 64.918 0 65c16.787.082 43.213 10 60 10s43.213-9.918 60-10c16.786-.082 33.346 7.358 50.129 7.685'  stroke-width='5' stroke='hsla(190,100%,42.4%,1)' fill='none'/></pattern></defs><rect width='800%' height='800%' transform='translate(0,0)' fill='url(%23a)'/></svg>");
+  animation-name: slidein;
+  animation-duration: 50s;
+  animation-iteration-count: infinite;
+}
+@keyframes slidein {
+  0% {
+    top:0;
+    left:0;
+  }
 
+  50% {
+    top:-125vh;
+    left:-125vh
+  }
+  100% {
+    top:0;
+    left:0;
+  }
+}
 a {
   color: inherit;
   text-decoration: none;
