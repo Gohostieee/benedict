@@ -20,7 +20,7 @@ function parseData(data:gridSelData[]):JSX.Element[] {
 		result.push(
 		<div className="">
             <div className="m-auto text-center ">
-            <a href={x.href}><p className=" border inline p pr-2 pl-2 text-2xl text-white font-bold hover:bg-white hover:text-black transition-all  ">{x.name.toUpperCase()}</p></a>
+            <a href={x.href}><p className=" bg-black bg-opacity-70 border inline p pr-2 pl-2 text-2xl text-white font-light hover:bg-white hover:text-black transition-all  ">{x.name.toUpperCase()}</p></a>
 
             </div>
                 <div className="border-2 mt-4 border-white p-6 m-auto overflow-hidden w-[300px] h-[300px] transition-all bg-opacity-70 bg-black hover:p-12 hover:bg-opacity-0 hover:border-white">
