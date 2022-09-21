@@ -14,3 +14,8 @@ export interface img {
         width:Number,
         height:Number
 }
+export interface userData {
+
+        name:string,
+        password:string
+}

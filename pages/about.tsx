@@ -1,8 +1,5 @@
 
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
-
-import Image from 'next/image'
 
 export default function About() {
 
@@ -27,7 +24,7 @@ export default function About() {
 				<div className='flex'>
                     <a href='/'><button className='text-white m-4 top-24 block relative text-2xl font-bold mr-0 bg-black bg-opacity-40 text-red-500 border border-4 p-2 pr-4 pl-4 border-red-500 hover:bg-black hover:border-white hover:text-white hover:p-2 hover:border-2 hover:font-light transition-all '>Home</button></a>
 			    	<a href='/services'><button className='text-white m-4 top-24 block relative text-2xl font-bold mr-0 bg-black bg-opacity-40 text-red-500 border border-4 p-2 pr-4 pl-4 border-red-500 hover:bg-black hover:border-white hover:text-white hover:p-2 hover:border-2 hover:font-light transition-all '>Services</button></a>
-			    	<a href='/Contacts'><button className='text-white m-4 top-24 block relative text-2xl font-bold mr-0 bg-black bg-opacity-40 text-red-500 border border-4 p-2 pr-4 pl-4 border-red-500 hover:bg-black hover:border-white hover:text-white hover:p-2 hover:border-2 hover:font-light transition-all '>Contacts</button></a>
+			    	<a href='/contacts'><button className='text-white m-4 top-24 block relative text-2xl font-bold mr-0 bg-black bg-opacity-40 text-red-500 border border-4 p-2 pr-4 pl-4 border-red-500 hover:bg-black hover:border-white hover:text-white hover:p-2 hover:border-2 hover:font-light transition-all '>Contacts</button></a>
 			    	<a onClick={goback}><button className='text-white m-4 top-24 block relative text-2xl font-bold mr-0 bg-black bg-opacity-40 text-red-500 border border-4 p-2 pr-4 pl-4 border-red-500 hover:bg-black hover:border-white hover:text-white hover:p-2 hover:border-2 hover:font-light transition-all '>Back</button></a>
                 </div>
                 
@@ -52,7 +49,7 @@ export default function About() {
                     <p className='text-white text-2xl mt-4 mb-4 font-thin border-x p-2 '>
                         We of course have the written lessons which are completely free, however there are private paid courses targeting 
                         from midlevel engineers all the way down to fresh starts and college students, these are one on one or group sessions 
-                        with different students and provide a more team-oriented experience, more information about this can be found <a href='/c' className='text-cyan-600 underline underline-offset-4'>here</a>.
+                        with different students and provide a more team-oriented experience, more information about this can be found <a href='/services' className='text-cyan-600 underline underline-offset-4'>here</a>.
                         We also plan on adding extra functionality into the website, especially one to network and meet other engineers.
                         This is something that really resonates within our team because we feel there just isn't a really good place to meet other 
                         engineers one on one. Not in a formal way but rather a more casual one.

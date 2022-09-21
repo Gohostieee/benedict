@@ -26,7 +26,7 @@ function parseData(data:gridSelData[]):JSX.Element[] {
                 <div className="border-2 mt-4 border-white p-6 m-auto overflow-hidden w-[300px] h-[300px] transition-all bg-opacity-70 bg-black hover:p-12 hover:bg-opacity-0 hover:border-white">
 			        <a href={x.href} className = "inline w-[100%] h-[100%]">
 				    
-                        <img src = {x.img.src} className = "h-[100%]"/>
+                        <img src = {x.img.src} className = "h-[100%] m-auto"/>
                     </a>
 			    </div>
 		</div>
@@ -41,7 +41,7 @@ function GridSelect({data}:props)   {
     const propsJson:gridSelData[] = JSON.parse(data)
     console.log(propsJson)
     return (
-        <div className="h-[100%] w-[100%] grid grid-cols-3 grid-rows-3">
+        <div className="h-[100%] w-[100%] grid grid-cols-5">
             {parseData(propsJson)}
         </div>
     )
