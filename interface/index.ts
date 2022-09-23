@@ -19,3 +19,7 @@ export interface userData {
         name:string,
         password:string
 }
+export interface mysqlQuery {
+        query:string,
+        values:any[]
+}
