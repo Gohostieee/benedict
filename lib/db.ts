@@ -1,14 +1,15 @@
     import mysql from 'mysql2';
 import {mysqlQuery} from "../interface";
-
-    const connection = mysql.createConnection(process.env.DATABASE_URL)
+    const conn = process.env.DATABASE_URL;
+    if (conn=== undefined){
+        throw "sql uri missing"
+    }
+    const connection = mysql.createConnection(conn)
     console.log('Connected to PlanetScale!')
 
 export default async function executeQuery({ query, values }:mysqlQuery) {
     try {
-        const results = await connection.query(query, values);
-        await connection.end();
-        return results;
+        return await connection.promise().query(query, values);
     } catch (error) {
         return { error };
     }

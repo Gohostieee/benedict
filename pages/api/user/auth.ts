@@ -11,25 +11,56 @@ export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse
 ) {
+
     switch(req.method) {
         case "POST":
 
-            const {Username, Password} = req.body;
-            console.log("wow")
-            console.log("wow")
+            let pass = false;
             try {
-                await executeQuery({query:"INSERT INTO `user-info` (username, password) VALUES (?, ?)",values:[Username,Password]}).then(x => {
-                    res.status(200).json(x)
-                });
+
+                const {Username, Password,Email} = req.body;
+
+                await executeQuery({query:"select * from `user-info` where email = ?",values:[Email]}).then(async x => {
+                    console.log(x)
+
+                    // @ts-ignore
+                    if(x[0]?.length > 0) {
+                        res.status(201).json({accepted:false,reason:"email taken"})
+                        return;
+                    }
+                    pass = true;
+                })
+                if(pass) {
+
+                    await executeQuery({query:"INSERT INTO `user-info` (username, password, email) VALUES (?, ?, ?)",values:[Username,Password,Email]}).then(x => {
+                        res.status(200).json({accepted:true})
+                    });
+                }
+
+                return;
+
             }
-            catch {
+            catch (x) {
+                console.log(x)
                 res.status(204).send("bad");
             }
 
             break
 
-        case "get":
+        case "GET":
+            const {Password,Email} = req.query;
+            console.log(Password,Email)
+            await executeQuery({query:"SELECT username, bio, email FROM `user-info` WHERE email = ? AND password = ?",values:[Email,Password]}).then(x => {
+                // @ts-ignore
 
+                if(x[0]?.length > 0) {
+                    // @ts-ignore
+                    res.status(200).json({login:true,Username:x[0][0].username,Bio:x[0][0].bio,Email:Email,Password:Password});
+
+                } else {
+                    res.status(204).json({accepted:false})
+                }
+            })
 
             break;
     }
