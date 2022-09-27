@@ -68,3 +68,4 @@ export default function Contacts() {
         </>
     )
 }
+//bulllshit bullshit bullshit tesis no fue demasiado definida y los argumentos pudieran ser un pocos mas especificos

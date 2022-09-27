@@ -23,3 +23,7 @@ export interface mysqlQuery {
         query:string,
         values:any[]
 }
+export interface userDetails {
+        name:string,
+        bio:string
+}

@@ -1,6 +1,6 @@
 import {NextPage} from "next";
 import {useEffect, useRef, useState} from "react";
-import {userData} from "../interface";
+import {userData, userDetails} from "../interface";
 import lain from "../img/lain.png"
 import Head from "next/head";
 import axios from "axios";
@@ -8,10 +8,14 @@ import GridSelect from "../components/gridselect";
 
 const Account: NextPage = () => {
     const [contentEdit,useContentEdit] = useState({Username: false, Bio: false});
-    const bio = useRef<HTMLParagraphElement>()
-    const [user, useUser] = useState({name: "", password: "", login: false});
+    const bio = useRef<HTMLParagraphElement>(),name = useRef<HTMLParagraphElement>();
+    const [user, useUser] = useState({name: "", password: "", login: false}), [userDeets,useUserDeets] = useState({name:"Loading...",bio:"Loading..."});
     const SetUser = (x: Function, y: userData) => {
         x(y)
+        
+    }
+    const SetUserDetails = (stateHook:Function,details:userDetails) =>{
+        stateHook(details);
     }
     const Edit = (x:"Username" | "Bio" | "Cancel") => {
         switch(x){
@@ -25,7 +29,15 @@ const Account: NextPage = () => {
 
                 break;
             case "Cancel":
-                useContentEdit({Username:false,Bio:false})
+                useContentEdit({Username:false,Bio:false});
+                if(bio.current != undefined) {
+                    bio.current.innerText = userDeets.bio
+
+                }
+                if (name.current != undefined) {
+                    name.current.innerText = userDeets.name
+                }
+
         }
     }
     const GetInfo = async () => {
@@ -44,6 +56,7 @@ const Account: NextPage = () => {
                 window.location.href = "/login"
             }
             SetUser(useUser, tempData)
+            SetUserDetails(useUserDeets,{name:tempData.name,bio:"Loading..."})
 
         }
     }, [])
@@ -77,35 +90,23 @@ const Account: NextPage = () => {
                                 <img src={lain.src} className={"w-[220px] p-4 border border-emerald-400 h-[220px]"}/>
                                 <div className={"border-emerald-400 p-4 ml-7"}>
                                     {contentEdit.Username ?
-                                        <p contentEditable={true} className={"text-violet-400 ml-4 text-4xl border-x pl-4 pr-4 cursor-pointer border-emerald-400 inline border-fuchsia-400 font-thin"}>BENEDICT</p>
+                                        <p ref = {name} contentEditable={true} className={"text-violet-400 ml-4 text-4xl border-x pl-4 pr-4 cursor-pointer border-emerald-400 inline border-fuchsia-400 font-thin"}>{userDeets.name}</p>
                                         :
-                                        <p contentEditable={false} className={"text-violet-400 ml-4 text-4xl border-b border-emerald-400 h-12 font-thin"}>BENEDICT</p>
+                                        <p ref = {name} contentEditable={false} className={"text-violet-400 ml-4 text-4xl border-b border-emerald-400 h-12 font-thin"}>{userDeets.name}</p>
 
 
                                     }
                                     {contentEdit.Bio ?
-                                        <p contentEditable={true}
-                                           className={"text-violet-400 ml-4 text-xl  text-justify mt-2 border border-fuchsia-400 p-4 min-h-12 cursor-pointer font-thin"}>Lorem
-                                            Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                                            Ipsum has been the industry's standard dummy text ever since the 1500s, when
-                                            an unknown printer took a galley of type and scrambled it to make a type
-                                            specimen book. It has survived not only five centuries, but also the leap
-                                            into electronic typesetting, remaining essentially unchanged. It was
-                                            popularised in the 1960s with the release of Letraset sheets containing
-                                            Lorem Ipsum passages, and more recently with desktop publishing software
-                                            like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                                        <p contentEditable={true} ref = {bio}
+                                           className={"text-violet-400 ml-4 text-xl  text-justify mt-2 border border-fuchsia-400 p-4 min-h-12 cursor-pointer font-thin"}>
+                                            {userDeets.bio}
+                                            </p>
 
                                         :
-                                        <p contentEditable={false}
-                                           className={"text-violet-400 ml-4 text-xl  text-justify mt-2 font-thin"}>Lorem
-                                            Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                                            Ipsum has been the industry's standard dummy text ever since the 1500s, when
-                                            an unknown printer took a galley of type and scrambled it to make a type
-                                            specimen book. It has survived not only five centuries, but also the leap
-                                            into electronic typesetting, remaining essentially unchanged. It was
-                                            popularised in the 1960s with the release of Letraset sheets containing
-                                            Lorem Ipsum passages, and more recently with desktop publishing software
-                                            like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                                        <p contentEditable={false} ref = {bio}
+                                           className={"text-violet-400 ml-4 text-xl  text-justify mt-2 font-thin"}>
+                                            {userDeets.bio}    
+                                           </p>
 
                                     }
                                     <div className={"flex w-[100%]"}>
