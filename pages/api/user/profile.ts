@@ -13,14 +13,19 @@ export default async function handler(
 
     switch(req.method) {
         case "POST":
-
+            const {email,password,bio,name} = req.body;
+            await executeQuery({query:"UPDATE `user-info` SET username = ?, bio = ? WHERE email = ? and password = ?",values:[name,bio,email,password]}).then(x => {
+                console.log(x,{query:"UPDATE `user-info` SET username = ?, bio = ? WHERE email = ? and password = ?",values:[name,bio,email,password]})
+                res.status(200).send("uwu")
+            })
 
 
             break
 
         case "GET":
             try {
-                await executeQuery({query:"SELECT * FROM `user-info` WHERE name = ? ",values:[req.query.Username]}).then(x => {
+                console.log({query: "SELECT * FROM `user-info` WHERE email = ? ", values: [req.query.Email]})
+                await executeQuery({query:"SELECT * FROM `user-info` WHERE email = ? ",values:[req.query.Email]}).then(x => {
                     // @ts-ignore
                     if(x[0]?.length > 0) {
                         // @ts-ignore

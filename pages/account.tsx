@@ -9,7 +9,7 @@ import GridSelect from "../components/gridselect";
 const Account: NextPage = () => {
     const [contentEdit,useContentEdit] = useState({Username: false, Bio: false});
     const bio = useRef<HTMLParagraphElement>(),name = useRef<HTMLParagraphElement>();
-    const [user, useUser] = useState({name: "", password: "", login: false}), [userDeets,useUserDeets] = useState({name:"Loading...",bio:"Loading..."});
+    const [user, useUser] = useState({name: "", Password: "", login: false,Email:""}), [userDeets,useUserDeets] = useState({name:"Loading...",bio:"Loading..."});
     const SetUser = (x: Function, y: userData) => {
         x(y)
         
@@ -17,7 +17,8 @@ const Account: NextPage = () => {
     const SetUserDetails = (stateHook:Function,details:userDetails) =>{
         stateHook(details);
     }
-    const Edit = (x:"Username" | "Bio" | "Cancel") => {
+    const Edit = (x:"Username" | "Bio" | "Cancel" | "Save") => {
+        let tempData = userDeets;
         switch(x){
             case "Username":
                 useContentEdit({Username:true,Bio:false});
@@ -37,14 +38,43 @@ const Account: NextPage = () => {
                 if (name.current != undefined) {
                     name.current.innerText = userDeets.name
                 }
+                break;
+            case "Save":
+                useContentEdit({Username:false,Bio:false});
+
+                if(bio.current != undefined && name.current != undefined) {
+                    tempData = {name:name.current.innerText,bio:bio.current.innerText}
+                } else {
+                    tempData = {name:"something went wrong!",bio:"reload the page!"}
+                }
+
+                useUserDeets(tempData)
 
         }
+
+    }
+    const SaveInfo = async () => {
+        // @ts-ignore
+        await axios({url:"/api/user/profile",method:"post",data:{name:name?.current.innerText,bio:bio?.current.innerText,email:user.Email,password:user.Password}}).then(x => {
+            switch(x.status) {
+                case 200:
+                    Edit("Save");
+                    break;
+                case 201:
+                    Edit("Cancel")
+                    break;
+
+            }
+        })
     }
     const GetInfo = async () => {
-        await axios({url: `/api/user/profile?Username=${user.name}`, method: "get"}).then(x => {
-
+        await axios({url: `/api/user/profile?Email=${user.Email}`, method: "get"}).then(x => {
+            useUserDeets({name:x.data?.username,bio:x.data?.bio,})
         })
 
+    }
+    const uploadFile = () => {
+        document.getElementById("upload")?.click();
     }
     useEffect(() => {
         let tempData
@@ -56,18 +86,18 @@ const Account: NextPage = () => {
                 window.location.href = "/login"
             }
             SetUser(useUser, tempData)
-            SetUserDetails(useUserDeets,{name:tempData.name,bio:"Loading..."})
-
+            SetUserDetails(useUserDeets,{name:"Loading...",bio:"Loading..."})
         }
     }, [])
 
     useEffect(() => {
         if (user.login) {
+            GetInfo()
         }
     }, [user])
     return (
         <>
-
+            <input accept={".cvs,.doc,.txt,.docx"} type='file' id = "upload" hidden/>
             <div className='absolute overflow-hidden h-[100vh] w-[100vw]'>
                 <div
                     className='h-[300vh] bgwave opacity-100 w-[200%] absolute inline top-0  overflow-hidden opacity-60'/>
@@ -119,7 +149,7 @@ const Account: NextPage = () => {
                                             </>
                                             :
                                             <>
-                                                <button
+                                                <button onClick = {SaveInfo}
                                                     className={"border font-thin text-2xl p-2 pl-4 pr-4 text-violet-400 hover:text-white hover:bg-violet-700 m-4 transition-colors"}>SAVE</button>
                                                 <button onClick={()=>{Edit("Cancel")}}
                                                     className={"border font-thin text-2xl p-2 pl-4 pr-4 text-violet-400 hover:text-white hover:bg-violet-700 m-4 transition-colors"}>CANCEL</button>
@@ -136,7 +166,17 @@ const Account: NextPage = () => {
                         </div>
 
                     </div>
+
+                    <div className={"bg-black bg-opacity-90 border-2 mt-12 w-[100%]"}>
+                        <div className={"w-[90%] ml-[5%]"}>
+                            <button onClick = {uploadFile}
+                                    className={"border  block mt-12 m-auto font-thin text-2xl p-2 pl-4 pr-4 text-violet-400 hover:text-white hover:bg-violet-700 transition-colors"}>UPLOAD FILE</button>
+
+                        </div>
+
+                    </div>
                 </div>
+
             </main>
 
 
