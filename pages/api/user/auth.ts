@@ -58,8 +58,9 @@ export default async function handler(
                     res.status(200).json({login:true,Username:x[0][0].username,Bio:x[0][0].bio,Email:Email,Password:Password});
 
                 } else {
-                    res.status(204).json({accepted:false})
+                    res.status(202).json({accepted:false})
                 }
+                console.log(x)
             })
 
             break;

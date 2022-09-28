@@ -1,5 +1,6 @@
 import {NextPage} from "next";
 import Head from "next/head";
+import Link from "next/link";
 import {useRef, useState} from "react";
 import {EmailValid, PasswordValid, UsernameValid} from "../lib/authfuncs";
 import * as React from "react";
@@ -14,58 +15,62 @@ const Login:NextPage = () => {
     const SetError = (x:string) =>{
         useError(x)
     }
-
-    const Email = useRef<HTMLInputElement>(),Password = useRef<HTMLInputElement>();
+    
+    const Email = useRef<HTMLInputElement>(null),Password = useRef<HTMLInputElement>(null);
     const SubmitUser = async () => {
         let error:string = "";
         const PasswordVal = Password.current?.value
-
-        switch(PasswordValid(PasswordVal)) {
-            case 0:
-                error = "";
-                break
-            case 1:
-                error = "Password empty!"
-                break;
-            case 2:
-                error = "Password needs to be at least 4 characters long"
-                break;
-        }
-        useError(error)
-        if(error != "") {
-            return;
-        }
         const EmailValue = Email.current?.value
-        switch (EmailValid(EmailValue)){
-            case false:
-                error = ""
-                break;
-            case true:
-                error = "Email is not valid"
-                break;
-
-            case 2:
-                error = "Email is empty"
-                break;
-        }
-        useError(error)
-        if(error != "") {
-            return;
-        }
-
-        await axios({url:`/api/user/auth?Email=${EmailValue}&Password=${PasswordVal}`,method:"get",data:{Email:EmailValue,Password:PasswordVal}}).then( x => {
-            switch (x.status) {
-                case 200:
-                    localStorage.setItem("user",JSON.stringify({login:true,Email:EmailValue,Password:PasswordVal}));
-                    window.location.href = "/account"
-                    error = ""
+        try {
+            switch(PasswordValid(PasswordVal)) {
+                case 0:
+                    error = "";
+                    break
+                case 1:
+                    error = "Password empty!"
                     break;
-                default:
-                    error = "Unknown error, contact me about this."
+                case 2:
+                    error = "Password needs to be at least 4 characters long"
                     break;
             }
-            SetError(error);
-        })
+            if(error != "") {
+                throw "error";
+            }
+            switch (EmailValid(EmailValue)){
+                case false:
+                    error = ""
+                    break;
+                case true:
+                    error = "Email is not valid"
+                    break;
+    
+                case 2:
+                    error = "Email is empty"
+                    break;
+            }
+            if(error != "") {
+                throw "error";
+            }
+        } finally {
+            if(error === "") {
+                await axios({url:`/api/user/auth?Email=${EmailValue}&Password=${PasswordVal}`,method:"get",data:{Email:EmailValue,Password:PasswordVal}}).then( x => {
+                    switch (x.status) {
+                        case 200:
+                            localStorage.setItem("user",JSON.stringify({login:true,Email:EmailValue,Password:PasswordVal}));
+                            window.location.href = "/account"
+                            error = ""
+                            break;
+                        default:
+                            error = "Unknown error, contact me about this."
+                            break;
+                    }
+                })
+            }
+        }
+        useError(error)
+        
+
+        
     }
 
     return(
@@ -96,7 +101,7 @@ const Login:NextPage = () => {
                     <div className={"m-auto w-[50%] "}>
                         <p className={"text-lg underline text-rose-700 text-center"}>{error}</p>
 
-                        <a href={"signup"} className={"text-emerald-700 block text-center underline text-lg underline-offset-2 mb-2"}>Don't have an account?</a>
+                        <Link href={"signup"} className={"text-emerald-700 block text-center underline text-lg underline-offset-2 mb-2"}>{`Don't have an account?`}</Link>
                         <button onClick = {SubmitUser} className={"border bg-transparent w-[100%] m-auto h-16 text-white text-3xl font-bold hover:bg-rose-900 hover:font-thin hover:text-2xl transition-all"}>Login</button>
 
                     </div>

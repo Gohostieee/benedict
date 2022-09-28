@@ -1,7 +1,7 @@
 
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-
+import Link from 'next/link'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
@@ -36,9 +36,9 @@ export default function Contacts() {
                 <div className='flex justify-between'>
                 <h1 className='text-white top-24 relative text-8xl font-bold mr-0 bg-black bg-opacity-40 text-red-500 border border-4 p pr-4 pl-4 border-red-500 '>Benedict</h1>
 				<div className='flex'>
-                    <a href='/'><button className='text-white m-4 top-24 block relative text-2xl font-bold mr-0 bg-black bg-opacity-40 text-red-500 border border-4 p-2 pr-4 pl-4 border-red-500 hover:bg-black hover:border-white hover:text-white hover:p-2 hover:border-2 hover:font-light transition-all '>Home</button></a>
-		    		<a href='/about'><button className='text-white m-4 top-24 block relative text-2xl font-bold mr-0 bg-black bg-opacity-40 text-red-500 border border-4 p-2 pr-4 pl-4 border-red-500 hover:bg-black hover:border-white hover:text-white hover:p-2 hover:border-2 hover:font-light transition-all '>About</button></a>
-			    	<a href='/services'><button className='text-white m-4 top-24 block relative text-2xl font-bold mr-0 bg-black bg-opacity-40 text-red-500 border border-4 p-2 pr-4 pl-4 border-red-500 hover:bg-black hover:border-white hover:text-white hover:p-2 hover:border-2 hover:font-light transition-all '>Services</button></a>
+                    <Link href='/'><button className='text-white m-4 top-24 block relative text-2xl font-bold mr-0 bg-black bg-opacity-40 text-red-500 border border-4 p-2 pr-4 pl-4 border-red-500 hover:bg-black hover:border-white hover:text-white hover:p-2 hover:border-2 hover:font-light transition-all '>Home</button></Link>
+		    		<Link href='/about'><button className='text-white m-4 top-24 block relative text-2xl font-bold mr-0 bg-black bg-opacity-40 text-red-500 border border-4 p-2 pr-4 pl-4 border-red-500 hover:bg-black hover:border-white hover:text-white hover:p-2 hover:border-2 hover:font-light transition-all '>About</button></Link>
+			    	<Link href='/services'><button className='text-white m-4 top-24 block relative text-2xl font-bold mr-0 bg-black bg-opacity-40 text-red-500 border border-4 p-2 pr-4 pl-4 border-red-500 hover:bg-black hover:border-white hover:text-white hover:p-2 hover:border-2 hover:font-light transition-all '>Services</button></Link>
 			    	<a onClick={goback}><button className='text-white m-4 top-24 block relative text-2xl font-bold mr-0 bg-black bg-opacity-40 text-red-500 border border-4 p-2 pr-4 pl-4 border-red-500 hover:bg-black hover:border-white hover:text-white hover:p-2 hover:border-2 hover:font-light transition-all '>Back</button></a>
                 </div>
                 

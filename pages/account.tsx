@@ -8,7 +8,7 @@ import GridSelect from "../components/gridselect";
 
 const Account: NextPage = () => {
     const [contentEdit,useContentEdit] = useState({Username: false, Bio: false});
-    const bio = useRef<HTMLParagraphElement>(),name = useRef<HTMLParagraphElement>();
+    const bio = useRef<HTMLParagraphElement>(null),name = useRef<HTMLParagraphElement>(null);
     const [user, useUser] = useState({name: "", Password: "", login: false,Email:""}), [userDeets,useUserDeets] = useState({name:"Loading...",bio:"Loading..."});
     const SetUser = (x: Function, y: userData) => {
         x(y)
@@ -19,18 +19,19 @@ const Account: NextPage = () => {
     }
     const Edit = (x:"Username" | "Bio" | "Cancel" | "Save") => {
         let tempData = userDeets;
+        let tempAccess = {Username:false,Bio:false};
         switch(x){
             case "Username":
-                useContentEdit({Username:true,Bio:false});
+                tempAccess = {Username:true,Bio:false};
 
                 break;
 
             case "Bio":
-                useContentEdit({Username:false,Bio:true});
+                tempAccess = {Username:false,Bio:true};
 
                 break;
             case "Cancel":
-                useContentEdit({Username:false,Bio:false});
+                tempAccess = {Username:false,Bio:false};
                 if(bio.current != undefined) {
                     bio.current.innerText = userDeets.bio
 
@@ -40,18 +41,16 @@ const Account: NextPage = () => {
                 }
                 break;
             case "Save":
-                useContentEdit({Username:false,Bio:false});
-
+                tempAccess = {Username:false,Bio:false};
                 if(bio.current != undefined && name.current != undefined) {
                     tempData = {name:name.current.innerText,bio:bio.current.innerText}
                 } else {
                     tempData = {name:"something went wrong!",bio:"reload the page!"}
                 }
 
-                useUserDeets(tempData)
-
         }
-
+        useUserDeets(tempData)
+        useContentEdit(tempAccess)
     }
     const SaveInfo = async () => {
         // @ts-ignore
@@ -69,12 +68,26 @@ const Account: NextPage = () => {
     }
     const GetInfo = async () => {
         await axios({url: `/api/user/profile?Email=${user.Email}`, method: "get"}).then(x => {
-            useUserDeets({name:x.data?.username,bio:x.data?.bio,})
+            console.log(x,"data")
+            SetUserDetails(useUserDeets,{name:x.data?.username,bio:x.data?.bio,})
         })
 
     }
     const uploadFile = () => {
         document.getElementById("upload")?.click();
+    }
+    //WILL NAME IT SOMETHING BETTER LATER
+    const uploadFile2 = (data:FileList | null) => {
+        if( data!= null) {
+            
+            for(const file in data) {
+                if (Object.prototype.hasOwnProperty.call(data, file)) {
+                    const element = data[file];
+                    ;
+                }
+            }
+            console.log(Uint8Array.from(data))
+        }
     }
     useEffect(() => {
         let tempData
@@ -85,9 +98,10 @@ const Account: NextPage = () => {
             } else {
                 window.location.href = "/login"
             }
-            SetUser(useUser, tempData)
-            SetUserDetails(useUserDeets,{name:"Loading...",bio:"Loading..."})
+            
         }
+        SetUser(useUser, tempData)
+        SetUserDetails(useUserDeets,{name:"Loading...",bio:"Loading..."})
     }, [])
 
     useEffect(() => {
@@ -97,7 +111,7 @@ const Account: NextPage = () => {
     }, [user])
     return (
         <>
-            <input accept={".cvs,.doc,.txt,.docx"} type='file' id = "upload" hidden/>
+            <input multiple onChange={(x)=>{uploadFile2(x.target.files)}} accept={".cvs,.doc,.txt,.docx"} type='file' id = "upload" hidden/>
             <div className='absolute overflow-hidden h-[100vh] w-[100vw]'>
                 <div
                     className='h-[300vh] bgwave opacity-100 w-[200%] absolute inline top-0  overflow-hidden opacity-60'/>
