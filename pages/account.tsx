@@ -82,11 +82,13 @@ const Account: NextPage = () => {
             
             for(const file in data) {
                 if (Object.prototype.hasOwnProperty.call(data, file)) {
-                    const element = data[file];
-                    ;
+                    data[file].arrayBuffer().then(buffer => {
+                        const byteData = new Uint8Array(buffer)
+                        uploadFile({location:"user-docs",data:byteData})
+                    })
+
                 }
             }
-            console.log(Uint8Array.from(data))
         }
     }
     useEffect(() => {
