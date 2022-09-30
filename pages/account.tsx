@@ -77,20 +77,23 @@ const Account: NextPage = () => {
         document.getElementById("upload")?.click();
     }
     //WILL NAME IT SOMETHING BETTER LATER
-    const uploadFile2 = (data:FileList | null) => {
+    /*
+    const uploadFile2 = async (data:FileList | null) => {
         if( data!= null) {
             
             for(const file in data) {
                 if (Object.prototype.hasOwnProperty.call(data, file)) {
-                    data[file].arrayBuffer().then(buffer => {
+                    data[file].arrayBuffer().then(async buffer => {
                         const byteData = new Uint8Array(buffer)
-                        uploadFile({location:"user-docs",data:byteData})
+                        console.log(data[file])
                     })
 
                 }
             }
         }
     }
+    */
+
     useEffect(() => {
         let tempData
         if (!user.login) {
@@ -113,7 +116,12 @@ const Account: NextPage = () => {
     }, [user])
     return (
         <>
+            {/*
+
             <input multiple onChange={(x)=>{uploadFile2(x.target.files)}} accept={".cvs,.doc,.txt,.docx"} type='file' id = "upload" hidden/>
+
+            */
+            }
             <div className='absolute overflow-hidden h-[100vh] w-[100vw]'>
                 <div
                     className='h-[300vh] bgwave opacity-100 w-[200%] absolute inline top-0  overflow-hidden opacity-60'/>
@@ -183,14 +191,21 @@ const Account: NextPage = () => {
 
                     </div>
 
-                    <div className={"bg-black bg-opacity-90 border-2 mt-12 w-[100%]"}>
+                    {
+                        /*
+                        <div className={"bg-black bg-opacity-90 border-2 mt-12 w-[100%]"}>
                         <div className={"w-[90%] ml-[5%]"}>
-                            <button onClick = {uploadFile}
-                                    className={"border  block mt-12 m-auto font-thin text-2xl p-2 pl-4 pr-4 text-violet-400 hover:text-white hover:bg-violet-700 transition-colors"}>UPLOAD FILE</button>
+                            <button onClick={uploadFile}
+                                    className={"border  block mt-12 m-auto font-thin text-2xl p-2 pl-4 pr-4 text-violet-400 hover:text-white hover:bg-violet-700 transition-colors"}>UPLOAD
+                                FILE
+                            </button>
 
                         </div>
 
+
                     </div>
+                     */
+                    }
                 </div>
 
             </main>
