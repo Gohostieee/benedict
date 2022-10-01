@@ -1,4 +1,5 @@
 import { StaticImageData } from "next/image"
+import {JSXElement} from "@typescript-eslint/types/dist/generated/ast-spec";
 
 
 export interface gridSelData {
@@ -8,7 +9,10 @@ export interface gridSelData {
         href:string
     
 }
-
+export interface dropdownData {
+        name: string,
+        data: JSX.Element
+}
 export interface img {
         src:string,
         width:Number,

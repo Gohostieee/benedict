@@ -1,36 +1,44 @@
 import {useRef, useState} from "react";
 import porcoEngine from "../img/porcoEngine.png"
+import {dropdownData} from "../interface";
+import {JSXElement} from "@typescript-eslint/types/dist/generated/ast-spec";
 
-function Dropdown() {
+
+
+function Dropdown({data}:dropdownData[]) {
     const [refresh,useRefresh] = useState(0)
-    let views = useRef([false])
+    const views = useRef([false])
+    let response:JSX.Element[] = [];
+    function parseData(data:dropdownData[]):JSX.Element[] {
+        console.log(data)
+        for(const index in data){
+            response.push(
+                <>
+                {views?.current[index] ?
+                    <div onClick={function Go(){views.current[index]=false;useRefresh(refresh+1)}} className={"w-[100%] overflow-auto duration-500 max-h-[2500px] bg-black bg-opacity-90 transition-all border-2 border-white"}>
+                        <button className={"w-[100%] text-white text-center text-2xl font-thin leading-[40px] hover:text-black hover:bg-white hover:border-fuchsia-400 transition-colors"}>
+                            {data[index].name}
+                        </button>
+                        {data[index].data}
+                    </div>
+                    :
+                    <div className={"w-[100%] overflow-hidden max-h-[42px] duration-500 bg-black bg-opacity-90 transition-all border-2 border-white"}>
+                        <button onClick={function Go(){views.current[index]=true;useRefresh(refresh+1)}} className={"w-[100%] text-white text-center text-2xl font-thin leading-[40px] hover:text-black hover:bg-white hover:border-fuchsia-400 transition-colors"}>
+                            {data[index].name}
+                        </button>
+                        {data[index].data}
+
+                    </div>
+
+                }
+                    </>
+            )
+        }
+        return response;
+    }
     return (
         <div className={"w-[100%] flex flex-col"}>
-            {
-                views.current[0] ?
-                    <div onClick={function Go(){views.current[0]=false;useRefresh(refresh+1)}} className={"w-[100%] overflow-hidden h-[500px] bg-black bg-opacity-90 transition-all border-2 border-white"}>
-                        <button className={"w-[100%] text-white text-center text-2xl font-thin leading-[50px] hover:text-black hover:bg-white hover:border-fuchsia-400 transition-colors"}>
-                            OPEN
-                        </button>
-                        <img src = {porcoEngine.src} className = "h-[100%] m-auto"/>
-
-                    </div>
-
-                    :
-                    <div className={"w-[100%] overflow-hidden h-[42px] bg-black bg-opacity-90 transition-all border-2 border-white"}>
-                        <button onClick={function Go(){views.current[0]=true;useRefresh(refresh+1)}} className={"w-[100%] text-white text-center text-2xl font-thin leading-[50px] hover:text-black hover:bg-white hover:border-fuchsia-400 transition-colors"}>
-                            OPEN
-                        </button>
-                        <img src = {porcoEngine.src} className = "h-[100%] m-auto"/>
-
-                    </div>
-            }
-
-            <div className={"w-[100%] overflow-hidden min-h-[0px] bg-black bg-opacity-90 transition-all border-2 border-white"}>
-                <button onClick={function Go(){views.current[0]=true;useRefresh(refresh+1)}} className={"w-[100%] text-white text-center text-2xl font-thin leading-[50px] hover:text-black hover:bg-white hover:border-fuchsia-400 transition-colors"}>
-                    OPEN
-                </button>
-            </div>
+            {parseData(data)}
         </div>
     )
 }

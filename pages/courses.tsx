@@ -2,15 +2,49 @@ import type {NextPage} from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import GridSelect from '../components/gridselect'
-import {gridSelData, img} from '../interface'
+import {dropdownData, gridSelData, img} from '../interface'
 import lain from "../img/lain.png"
 import prinny from "../img/bigPrinny.png"
 import porcoEngine from "../img/porcoEngine.png"
 import tsubasa from "../img/tsubasa.jpg"
+import python from "../img/python.png"
+import js from "../img/js.png"
+import cpp from "../img/C++.png"
+
 import Dropdown from "../components/dropdown";
 
 const Courses: NextPage = () => {
+    const dropdown: dropdownData[] = [{
+        name: "Introductory course", data: (
+            <div className={"m-auto w-[80%] mt-12 pt-12 border-t"}>
 
+                <p className={"text-white font-light text-xl text-justify"}>Starting in development can be an extremely daunting
+                    task, it is an extremely expansive field with many specializations and paths you have to take in
+                    order,
+                    to be able to keep up with today's top of the line engineers. Although if you are not very
+                    tech-savy, you probably have next to no clue how far these specializations can go. This is something that
+                    will be explored more in depth throughout the length of the course, however due to these needs, many languages
+                    have been developed in order to perform very specific jobs. These can be divided into the main roles
+                </p>
+                <div className={"flex justify-between w-[100%] mt-12 border-t p-12"}>
+                    <div>
+                        <img className={"w-[140px] m-auto"} src={python.src}/>
+                        <p className={"font-light text-xl mt-4 text-center text-white"}>General purpose languages</p>
+
+                    </div>
+                    <div>
+                        <img className={"w-[140px] m-auto"} src={cpp.src}/>
+                        <p className={"font-light text-xl mt-4 text-center text-white"}>Hyper performant code</p>
+                    </div>
+                    <div>
+                        <img className={"w-[140px] m-auto"} src={js.src}/>
+                        <p className={"font-light text-xl mt-4 text-center text-white"}>Highly specialized ecosystem</p>
+                    </div>
+                </div>
+            </div>
+
+        )
+    }]
 
     return (
         <>
@@ -34,14 +68,13 @@ const Courses: NextPage = () => {
 
 
                         </div>
-                        <div className = {"mt-12"}>
-                            <Dropdown/>
+                        <div className={"mt-12"}>
+                            <Dropdown data={dropdown}/>
 
                         </div>
 
                     </div>
                 </main>
-
 
 
             </div>
