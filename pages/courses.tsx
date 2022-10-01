@@ -7,6 +7,7 @@ import lain from "../img/lain.png"
 import prinny from "../img/bigPrinny.png"
 import porcoEngine from "../img/porcoEngine.png"
 import tsubasa from "../img/tsubasa.jpg"
+import Dropdown from "../components/dropdown";
 
 const Courses: NextPage = () => {
 
@@ -27,13 +28,16 @@ const Courses: NextPage = () => {
                 </Head>
 
                 <main className="h-[100vh] z-[2] relative m-auto">
-                    <div className='w-[90vw] m-auto'>
+                    <div className='w-[90vw] m-auto top-24 relative'>
                         <div className='flex justify-between'>
-                            <h1 className='text-white top-24 relative text-8xl font-bold mr-0 bg-black bg-opacity-40 text-red-500 border border-4 p pr-4 pl-4 border-red-500'>Benedict</h1>
+                            <h1 className='text-white relative text-8xl font-bold mr-0 bg-black bg-opacity-40 text-red-500 border border-4 p pr-4 pl-4 border-red-500'>Benedict</h1>
 
 
                         </div>
+                        <div className = {"mt-12"}>
+                            <Dropdown/>
 
+                        </div>
 
                     </div>
                 </main>
