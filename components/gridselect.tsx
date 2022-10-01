@@ -18,7 +18,7 @@ function parseData(data:gridSelData[]):JSX.Element[] {
 	let result:JSX.Element[] = [];
 	data.forEach(x => {
 		result.push(
-		<div className="">
+		<div className="ml-6 mr-6">
             <div className="m-auto text-center ">
             <a href={x.href}><p className=" bg-black bg-opacity-70 border inline p pr-2 pl-2 text-2xl text-white font-light hover:bg-white hover:text-black transition-all  ">{x.name.toUpperCase()}</p></a>
 
@@ -41,7 +41,7 @@ function GridSelect({data}:props)   {
     const propsJson:gridSelData[] = JSON.parse(data)
     console.log(propsJson)
     return (
-        <div className="h-[100%] w-[100%] grid grid-cols-5">
+        <div className="h-[100%] w-[100%] flex flex-wrap justify-center">
             {parseData(propsJson)}
         </div>
     )

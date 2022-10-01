@@ -8,17 +8,9 @@ import prinny from "../img/bigPrinny.png"
 import porcoEngine from "../img/porcoEngine.png"
 import tsubasa from "../img/tsubasa.jpg"
 
-const Home: NextPage = () => {
-    function goback() {
-        console.log(history.back())
-    }
+const Courses: NextPage = () => {
 
-    const gridData: gridSelData[] = [{name: "About", img: lain, href: "/about"}, {
-        name: "Contacts",
-        img: prinny,
-        href: "contacts"
-    }, {name: "Services", img: porcoEngine, href: "services"},
-        {name: "Courses", img: tsubasa, href: "courses"}]
+
     return (
         <>
 
@@ -41,16 +33,11 @@ const Home: NextPage = () => {
 
 
                         </div>
-                        <div className='top-48 relative m-auto'>
-                            <GridSelect data={JSON.stringify(gridData)}/>
-                        </div>
+
 
                     </div>
-                    <div></div>
                 </main>
-                <div className='overflow-hidden'>
 
-                </div>
 
 
             </div>
@@ -59,4 +46,4 @@ const Home: NextPage = () => {
     )
 }
 
-export default Home
+export default Courses
