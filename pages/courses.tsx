@@ -16,7 +16,7 @@ import Dropdown from "../components/dropdown";
 const Courses: NextPage = () => {
     const dropdown: dropdownData[] = [{
         name: "Introductory course", data: (
-            <div className={"m-auto w-[80%] mt-12 pt-12 border-t text-center"}>
+            <div className={"m-auto w-[80%] mt-12 pt-12 border-t pb-24 text-center"}>
 
                 <p className={"text-white font-light text-xl text-justify"}>Starting in development can be an extremely
                     daunting
@@ -35,26 +35,40 @@ const Courses: NextPage = () => {
                         <p className={"font-light text-xl mt-4 text-center text-white"}>General purpose languages</p>
                         <p className={"text-lg mt border-t  ml-4 mr-4 text-justify text-white font-light pl-2 pr-2"}>
                             There exists a section of languages referred to as, general purpose languaes, due to them
-                            not being tied down to any specific task, or function, they are built as a sort of jack of all trades,
-                            a huge proportion of them are scripting language, and aren't particularly efficient. But they actually tend to
-                            dominate a lot of the industry (particularly python), for a good number of reasons. A lot of them are extremely friendly to the developer, and
-                            focus a lot on readability and writing clean, and coherent code. They also make up for a lot of the weaknesses found in order languages.
-                            Like for example, if I website that focused heavily on manipulating and analysing data, instead of using plain old javascript whose data analytics library is extremely
-                            lackluster. I could make a website with python in order to make use of a broader set of tools.
+                            not being tied down to any specific task, or function, they are built as a sort of jack of
+                            all trades,
+                            a huge proportion of them are scripting language, and aren't particularly efficient. But
+                            they actually tend to
+                            dominate a lot of the industry (particularly python), for a good number of reasons. A lot of
+                            them are extremely friendly to the developer, and
+                            focus a lot on readability and writing clean, and coherent code. They also make up for a lot
+                            of the weaknesses found in order languages.
+                            Like for example, if I website that focused heavily on manipulating and analysing data,
+                            instead of using plain old javascript whose data analytics library is extremely
+                            lackluster. I could make a website with python in order to make use of a broader set of
+                            tools.
                         </p>
                     </div>
                     <div className={"w-[33%] border-l"}>
                         <img className={"h-[140px] m-auto"} src={cpp.src}/>
                         <p className={"font-mono text-xl mt-4 text-center text-white"}>Hyper performant code</p>
                         <p className={"text-lg mt border-t  ml-4 mr-4 text-justify text-white font-light pl-2 pr-2"}>
-                            Frequently cited as the most difficult facet of engineering, when you need to write blazingly fast (😉) code,
-                            that needs to be as efficient as possible, particularly when writing critical infrastructure such as an OS,
-                            or an application which boasts extremely intensive algorithms and demands as much performance as possible,
-                            like for example a game, you need to use a set of languages specifically created for such needs, you probably know these languages
-                            since they consist of the most popular family of languages in the world, being on par with python and javascript. These would be
-                            the C family of languages, and a good number of other languages based on them. Reallyyyy don't recommend anyone start over here,
-                            this is extremely intensive and me having started with high-level languages (will be explained later), when I moved into these sort of
-                            languages, I struggled a fair bit, even after several years of experience, the experience for someone whose completely fresh
+                            Frequently cited as the most difficult facet of engineering, when you need to write
+                            blazingly fast (😉) code,
+                            that needs to be as efficient as possible, particularly when writing critical infrastructure
+                            such as an OS,
+                            or an application which boasts extremely intensive algorithms and demands as much
+                            performance as possible,
+                            like for example a game, you need to use a set of languages specifically created for such
+                            needs, you probably know these languages
+                            since they consist of the most popular family of languages in the world, being on par with
+                            python and javascript. These would be
+                            the C family of languages, and a good number of other languages based on them. Reallyyyy
+                            don't recommend anyone start over here,
+                            this is extremely intensive and me having started with high-level languages (will be
+                            explained later), when I moved into these sort of
+                            languages, I struggled a fair bit, even after several years of experience, the experience
+                            for someone whose completely fresh
                             would be unnecessarily complex and overly limiting.
 
                         </p>
@@ -80,11 +94,39 @@ const Courses: NextPage = () => {
                             [React.js,Angular.js,Vue.js] dev and [.NET,Spring,Node.JS] dev respectively.</p>
                     </div>
                 </div>
-                <p className={"text-white font-mono text-2xl border-b-2 inline-block m-auto mt-12 mb-12"}>FEATURES</p>
-                <p className={"text-white font-light text-xl m-auto "}>FEATURES</p>
-
+                <p className={"text-white font-mono text-2xl border-b-2 inline-block m-auto mt-12 mb-4"}>Contents</p>
+                <br/>
+                <div className={"text-center m-auto block relative inline-block border-x pr-8 pl-8"}>
+                    <p className={"text-white font-light text-xl m-1 "}>Introduction to programming fundamentals</p>
+                    <p className={"text-white font-light text-xl m-1 "}>Algorithmic thought in practice</p>
+                    <p className={"text-white font-light text-xl m-1 "}>Technical interview preparations</p>
+                    <p className={"text-white font-light text-xl m-1 inline"}>Introduction to the concept of <p
+                        className={"font-black inline"}>MEMORY</p></p>
+                    <p className={"text-white font-light text-xl m-1 "}>Exploration of the various career paths</p>
+                    <p className={"text-white font-light text-xl m-1 "}>General know-how of the industry</p>
+                    <p className={"text-white font-light text-xl m-1 "}>Career goals and motivation</p>
+                    <p className={"text-white font-light text-xl m-1 "}>Getting your foot through the door</p>
+                </div>
+                <br/>
                 <p className={"text-white font-mono text-2xl border-b-2 inline-block m-auto mt-12 mb-12"}>PRICING</p>
+                <br/>
+                <div className={"border w-[30%] m-auto inline-block mr-4 p-8"}>
+                    <p className={"text-center text-2xl font-mono text-white"}>NORMAL SCHEDULE</p>
+                    <p className={"text-white font-light text-lg m-1 "}>Twenty four classes for those who want an extremely detailed experience, each at a specially
+                        discounted $20 USD an hour! <br/>
+                    </p>
+                    <p className={"text-white font-light text-base m-1 text-center border-t pt-2"}>These will be used to extensively introduce you
+                        to all the core fundamentals mentioned prior and help you really decide what to focus on for
+                        your career.
+                    </p>
+                    <p className={"text-white font-light text-base m-1 text-center border-t pt-2"} >Classes can be cancelled/refunded at any time</p>
+                    <p className={"text-white font-light text-base m-1 text-center inline"} >Starting at <p className={"line-through inline decoration-2 rotate-45 "}>$820</p> $420 USD across 24 classes for two months!</p>
+                    <p className={"text-white font-light text-base m-1 text-center border-t pt-2"} >For affordability, students and those looking for a career change, are eligible to spread the costs across 3 people, each paying 140 respectively</p>
 
+                </div>
+                <div className={"border w-[30%] m-auto inline-block ml-4"}>
+                    <p className={"text-center text-2xl font-mono text-white"}>ACCELERATED CURRICULUM</p>
+                </div>
             </div>
 
         )
