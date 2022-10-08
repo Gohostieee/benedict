@@ -1,9 +1,7 @@
 import * as dotenv from 'dotenv'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import executeQuery from "../../../lib/db";
-import {mysqlQuery} from "../../../interface";
 dotenv.config()
-console.log(process.env.Username)
 
 
 

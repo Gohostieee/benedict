@@ -34,7 +34,7 @@ const Home: NextPage = () => {
                     <link rel="icon" href="/favicon.ico"/>
                 </Head>
 
-                <main className="h-[100vh] z-[2] relative m-auto">
+                <main className="h-[100vh] lg z-[2] relative m-auto">
                     <div className='w-[90vw] m-auto'>
                         <div className='flex justify-between'>
                             <h1 className='text-white top-24 relative text-8xl font-bold mr-0 bg-black bg-opacity-40 text-red-500 border border-4 p pr-4 pl-4 border-red-500'>Benedict</h1>

@@ -1,15 +1,19 @@
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import porcoEngine from "../img/porcoEngine.png"
 import {dropdownData} from "../interface";
 import {JSXElement} from "@typescript-eslint/types/dist/generated/ast-spec";
 
+interface props {
+    data:dropdownData[]
+}
 
-
-function Dropdown({data}:dropdownData[]) {
+function Dropdown({data}:props) {
     const [refresh,useRefresh] = useState(0)
     const views = useRef([false])
-    let response:JSX.Element[] = [];
+    const [page,usePage] = useState<Element[]>()
     function parseData(data:dropdownData[]):JSX.Element[] {
+        let response:JSX.Element[] = [];
+
         console.log(data)
         for(const index in data){
             response.push(
@@ -36,9 +40,14 @@ function Dropdown({data}:dropdownData[]) {
         }
         return response;
     }
+    useEffect(()=> {
+        // @ts-ignore
+        return usePage(parseData(data));
+    })
+    // @ts-ignore
     return (
         <div className={"w-[100%] flex flex-col overflow-hidden"}>
-            {parseData(data)}
+            {page}
         </div>
     )
 }
