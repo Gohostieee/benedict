@@ -1,12 +1,8 @@
 import type {NextPage} from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import GridSelect from '../components/gridselect'
 import {dropdownData, gridSelData, img} from '../interface'
-import lain from "../img/lain.png"
-import prinny from "../img/bigPrinny.png"
-import porcoEngine from "../img/porcoEngine.png"
-import tsubasa from "../img/tsubasa.jpg"
+import Link from "next/link";
 import python from "../img/python.png"
 import js from "../img/js.png"
 import cpp from "../img/C++.png"
@@ -31,8 +27,8 @@ const Courses: NextPage = () => {
                 </p>
                 <div className={"flex justify-between w-[100%] mt-12 border-y p-12"}>
                     <div className={"w-[33%] border-l"}>
-                        <img className={"h-[140px] m-auto"} src={python.src}/>
-                        <p className={"font-light text-xl mt-4 text-center text-white"}>General purpose languages</p>
+                        <Image height={145} width={140} className={"m-auto"} src={python.src}/>
+                        <p className={"font-mono text-xl mt-4 text-center text-white"}>General purpose languages</p>
                         <p className={"text-lg mt border-t  ml-4 mr-4 text-justify text-white font-light pl-2 pr-2"}>
                             There exists a section of languages referred to as, general purpose languaes, due to them
                             not being tied down to any specific task, or function, they are built as a sort of jack of
@@ -50,7 +46,7 @@ const Courses: NextPage = () => {
                         </p>
                     </div>
                     <div className={"w-[33%] border-l"}>
-                        <img className={"h-[140px] m-auto"} src={cpp.src}/>
+                        <Image height={145} width={140} className={"m-auto"} src={cpp.src}/>
                         <p className={"font-mono text-xl mt-4 text-center text-white"}>Hyper performant code</p>
                         <p className={"text-lg mt border-t  ml-4 mr-4 text-justify text-white font-light pl-2 pr-2"}>
                             Frequently cited as the most difficult facet of engineering, when you need to write
@@ -74,7 +70,7 @@ const Courses: NextPage = () => {
                         </p>
                     </div>
                     <div className={"w-[33%] border-l"}>
-                        <img className={"h-[140px] m-auto"} src={js.src}/>
+                        <Image height={145} width={140} className={"m-auto"} src={js.src}/>
                         <p className={"font-mono text-xl mt-4 text-center text-white"}>Highly specialized
                             ecosystem
                         </p>
@@ -111,7 +107,22 @@ const Courses: NextPage = () => {
                 <p className={"text-white font-mono text-2xl border-b-2 inline-block m-auto mt-12 mb-12"}>PRICING</p>
                 <br/>
                 <div className={"border w-[30%] m-auto inline-block mr-4 p-8"}>
-                    <p className={"text-center text-2xl font-mono text-white"}>NORMAL SCHEDULE</p>
+                    <p className={"text-center text-2xl font-mono text-white"}>ACCELERATED SCHEDULE</p>
+                    <p className={"text-white font-light text-lg m-1 "}>12 classes for those who want a faster deal, not as detailed and a lot less hand holding, but still setting you up and
+                        sending you in the right direction, each at a specially
+                        discounted $18 USD an hour! <br/>
+                    </p>
+                    <p className={"text-white font-light text-base m-1 text-center border-t pt-2"}>These will be used to extensively introduce you
+                        to all the core fundamentals mentioned prior and help you really decide what to focus on for
+                        your career.
+                    </p>
+                    <p className={"text-white font-light text-base m-1 text-center border-t pt-2"} >Classes not taken can be cancelled/refunded at any time</p>
+                    <p className={"text-white font-light text-base m-1 text-center inline"} >Starting at <p className={"line-through inline decoration-2 rotate-45 "}>$520</p> $220 USD across 12 classes!</p>
+                    <p className={"text-white font-light text-base m-1 text-center border-t pt-2"} >For affordability, students and those looking for a career change, are eligible to spread the costs across 3 people, each paying 73 respectively</p>
+
+                </div>
+                <div className={"border w-[30%] m-auto inline-block ml-4 p-8"}>
+                    <p className={"text-center text-2xl font-mono text-white"}>NORMAL CURRICULUM</p>
                     <p className={"text-white font-light text-lg m-1 "}>Twenty four classes for those who want an extremely detailed experience, each at a specially
                         discounted $20 USD an hour! <br/>
                     </p>
@@ -119,14 +130,12 @@ const Courses: NextPage = () => {
                         to all the core fundamentals mentioned prior and help you really decide what to focus on for
                         your career.
                     </p>
-                    <p className={"text-white font-light text-base m-1 text-center border-t pt-2"} >Classes can be cancelled/refunded at any time</p>
+                    <p className={"text-white font-light text-base m-1 text-center border-t pt-2"} >Classes not taken can be cancelled/refunded at any time</p>
                     <p className={"text-white font-light text-base m-1 text-center inline"} >Starting at <p className={"line-through inline decoration-2 rotate-45 "}>$820</p> $420 USD across 24 classes for two months!</p>
                     <p className={"text-white font-light text-base m-1 text-center border-t pt-2"} >For affordability, students and those looking for a career change, are eligible to spread the costs across 3 people, each paying 140 respectively</p>
 
                 </div>
-                <div className={"border w-[30%] m-auto inline-block ml-4"}>
-                    <p className={"text-center text-2xl font-mono text-white"}>ACCELERATED CURRICULUM</p>
-                </div>
+                <Link href={"contacts"}><p className={"mt-4 cursor-pointer text-cyan-400 font-mono text-center border-b inline-block p-2 text-xl"}>Want to book a class? Got a couple questions? Reach out to us in our contacts!</p></Link>
             </div>
 
         )

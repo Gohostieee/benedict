@@ -35,13 +35,8 @@ export default function Contacts() {
 			<div className='w-[90vw] m-auto overflow- block'>
                 <div className='flex justify-between'>
                 <h1 className='text-white top-24 relative text-8xl font-bold mr-0 bg-black bg-opacity-40 text-red-500 border border-4 p pr-4 pl-4 border-red-500 '>Benedict</h1>
-				<div className='flex'>
-                    <Link href='/'><button className='text-white m-4 top-24 block relative text-2xl font-bold mr-0 bg-black bg-opacity-40 text-red-500 border border-4 p-2 pr-4 pl-4 border-red-500 hover:bg-black hover:border-white hover:text-white hover:p-2 hover:border-2 hover:font-light transition-all '>Home</button></Link>
-		    		<Link href='/about'><button className='text-white m-4 top-24 block relative text-2xl font-bold mr-0 bg-black bg-opacity-40 text-red-500 border border-4 p-2 pr-4 pl-4 border-red-500 hover:bg-black hover:border-white hover:text-white hover:p-2 hover:border-2 hover:font-light transition-all '>About</button></Link>
-			    	<Link href='/services'><button className='text-white m-4 top-24 block relative text-2xl font-bold mr-0 bg-black bg-opacity-40 text-red-500 border border-4 p-2 pr-4 pl-4 border-red-500 hover:bg-black hover:border-white hover:text-white hover:p-2 hover:border-2 hover:font-light transition-all '>Services</button></Link>
-			    	<a onClick={goback}><button className='text-white m-4 top-24 block relative text-2xl font-bold mr-0 bg-black bg-opacity-40 text-red-500 border border-4 p-2 pr-4 pl-4 border-red-500 hover:bg-black hover:border-white hover:text-white hover:p-2 hover:border-2 hover:font-light transition-all '>Back</button></a>
-                </div>
-                
+			    	<a href={"/"}><button className='text-white m-4 top-24 block relative text-2xl font-bold mr-0 bg-black bg-opacity-40 text-red-500 border border-4 p-2 pr-4 pl-4 border-red-500 hover:bg-black hover:border-white hover:text-white hover:p-2 hover:border-2 hover:font-light transition-all '>Back</button></a>
+
                 </div>
 				
                 <div className='top-48 relative border p-4 bg-black bg-opacity-70 flex justifycenter'>
@@ -54,7 +49,7 @@ export default function Contacts() {
                 </div>
                 <div className='top-48 relative border p-4 mt-8 bg-black bg-opacity-70 flex justifycenter'>
                     
-                    <p className='text-white text-2xl font-light  p-2 m-4'>Email: Josh32eb@gmail.com</p>
+                    <p className='text-white text-2xl font-light  p-2 m-4'>Email: Joshua32eb@gmail.com</p>
                     <p className='text-white text-3xl mt-4 mb-4 font-thin border-x p-2 m-4'>
                         <a href="www.gmail.com" className='text-red-500 underline underline-offset-4'>Gmail</a> for a more formal exchange. 
                     </p>

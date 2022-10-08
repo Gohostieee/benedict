@@ -10,7 +10,7 @@ interface props {
 function Dropdown({data}:props) {
     const [refresh,useRefresh] = useState(0)
     const views = useRef([false])
-    const [page,usePage] = useState<Element[]>()
+    const [page,usePage] = useState()
     function parseData(data:dropdownData[]):JSX.Element[] {
         let response:JSX.Element[] = [];
 
@@ -43,7 +43,8 @@ function Dropdown({data}:props) {
     useEffect(()=> {
         // @ts-ignore
         return usePage(parseData(data));
-    })
+
+    },[refresh])
     // @ts-ignore
     return (
         <div className={"w-[100%] flex flex-col overflow-hidden"}>
